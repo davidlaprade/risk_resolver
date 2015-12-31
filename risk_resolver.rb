@@ -4,7 +4,7 @@ class RiskBattle
                 :attack_dice,
                 :defend_dice
 
-  def initialize( attackers = 1, defenders = 1, stepwise = false)
+  def initialize( attackers = 3, defenders = 2, stepwise = false)
     @stepwise = stepwise
     @attackers = attackers.to_i
     @defenders = defenders.to_i
