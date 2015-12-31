@@ -7,8 +7,10 @@
 #
 # Simply run the script passing in two ENV
 # variables:
-#   ATTACKING = number of attacking pieces
-#   DEFENDING = number of defending pieces
+#   ATTACKING = number of pieces in attacking
+#   colony
+#   DEFENDING = number of pieces in defending
+#   colony
 # and this optional one:
 #   STEPWISE = (true/false) whether to step
 #   through the process one "roll" at a time
