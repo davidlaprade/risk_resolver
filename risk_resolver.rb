@@ -9,6 +9,9 @@
 # variables:
 #   ATTACKING = number of attacking pieces
 #   DEFENDING = number of defending pieces
+# and this optional one:
+#   STEPWISE = (true/false) whether to step
+#   through the process one "roll" at a time
 #
 # Example: `ATTACKING=10 DEFENDING=5 ruby risk_resolver.rb`
 #
