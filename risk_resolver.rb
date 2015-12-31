@@ -110,5 +110,5 @@ end
 RiskBattle.new(
   ENV["ATTACKING"],
   ENV["DEFENDING"],
-  ENV["STEPWISE"] || false
+  ENV["STEPWISE"]
 ).outcome
