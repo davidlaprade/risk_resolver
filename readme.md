@@ -21,6 +21,7 @@ Simply run the script passing in the following ENV variables:
 | ATTACKING | number of pieces in attacking colony | 3 | false |
 | DEFENDING | number of pieces in defending colony | 2 | false |
 | STEPWISE | whether to step through the process one "roll" at a time | false | true |
+| SILENT | whether to print the results to STDOUT | false | true |
 
 Example:
 
