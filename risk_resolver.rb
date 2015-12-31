@@ -11,22 +11,29 @@ class RiskBattle
   end
 
   def outcome
-    while attackers > 1 && defenders > 0
+    attack! while attackers > 1 && defenders > 0
+    output_result
+  end
+
+  # =============================================
+  private
+
+    def attack!
       puts "#{attackers} attacking, #{defenders} defending..."
-      faceoff
+
+      roll_dice
+
+      puts "Attacker rolls #{@attack_dice.sort.reverse.inspect}"
+      puts "Defender rolls #{@defend_dice.sort.reverse.inspect}"
+
+      first_comparison
+      second_comparison
+
       if @stepwise
         puts "Enter to continue..."
         gets
       end
     end
-
-    puts "Result: #{attackers} attackers, #{defenders} defenders"
-    puts "Territory conquered!" if defenders.zero?
-    puts "Territory defended!" if attackers == 1
-  end
-
-  # =============================================
-  private
 
     def compare_top_dice
       if @defend_dice.max >= @attack_dice.max
@@ -38,26 +45,21 @@ class RiskBattle
       end
     end
 
-    def faceoff
-      roll_dice
-
-      puts "Attacker rolls #{@attack_dice.sort.reverse.inspect}"
-      puts "Defender rolls #{@defend_dice.sort.reverse.inspect}"
-
-      first_round
-      second_round
+    def output_result
+      puts "Result: #{attackers} attackers, #{defenders} defenders"
+      puts "Territory conquered!" if defenders.zero?
+      puts "Territory defended!" if attackers == 1
     end
 
-    def first_round
+    def first_comparison
       compare_top_dice
       remove_top_dice
     end
 
-    def second_round
+    def second_comparison
       if defend_dice.count > 0 && attack_dice.count > 0 &&
           @attackers > 1 && @defenders > 0
-        compare_top_dice
-        remove_top_dice
+        first_comparison
       end
     end
 
@@ -71,7 +73,7 @@ class RiskBattle
       when :attack
         num_dice = attackers > 3 ? 3 : attackers - 1
       when :defend
-        num_dice = defenders >= 2 ? 2 : defenders
+        num_dice = defenders > 1 ? 2 : defenders
       when nil
         @attack_dice = roll_dice :attack
         @defend_dice = roll_dice :defend
