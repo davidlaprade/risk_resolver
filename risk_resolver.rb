@@ -4,7 +4,12 @@ class RiskBattle
                 :attack_dice,
                 :defend_dice
 
-  def initialize( attackers = 3, defenders = 2, stepwise = false)
+  def initialize(
+      attackers = 3,
+      defenders = 2,
+      stepwise = false,
+      silent = false )
+    @silent = silent
     @stepwise = stepwise
     @attackers = attackers.to_i
     @defenders = defenders.to_i
@@ -12,7 +17,8 @@ class RiskBattle
 
   def outcome
     fight_to_death
-    output_result
+    print_result unless @silent
+    return defenders.zero? ? "conquered" : "defended"
   end
 
   # =============================================
@@ -23,12 +29,13 @@ class RiskBattle
     end
 
     def attack!
-      puts "#{attackers} attacking, #{defenders} defending..."
-
       roll_dice
 
-      puts "Attacker rolls #{@attack_dice.sort.reverse}"
-      puts "Defender rolls #{@defend_dice.sort.reverse}"
+      unless @silent
+        puts "#{attackers} attacking, #{defenders} defending..."
+        puts "Attacker rolls #{@attack_dice.sort.reverse}"
+        puts "Defender rolls #{@defend_dice.sort.reverse}"
+      end
 
       first_comparison
       second_comparison
@@ -41,15 +48,15 @@ class RiskBattle
 
     def compare_top_dice
       if @defend_dice.max >= @attack_dice.max
-        puts "-1 attacker"
+        puts "-1 attacker" unless @silent
         @attackers -= 1
       else
-        puts "-1 defender"
+        puts "-1 defender" unless @silent
         @defenders -= 1
       end
     end
 
-    def output_result
+    def print_result
       puts "Result: #{attackers} attackers, #{defenders} defenders"
       puts "Territory conquered!" if defenders.zero?
       puts "Territory defended!" if attackers == 1
@@ -90,5 +97,6 @@ end
 RiskBattle.new(
   ENV["ATTACKING"],
   ENV["DEFENDING"],
-  ENV["STEPWISE"]
+  ENV["STEPWISE"],
+  ENV["SILENT"]
 ).outcome
