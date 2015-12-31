@@ -1,20 +1,20 @@
 ### About
-This program speeds up RISK play times by
-resolving large battles without needing to
+This program speeds up [RISK](https://en.wikipedia.org/wiki/Risk_(game))
+play times by resolving large battles without needing to
 repeatedly roll any dice.
 
 It makes the following assumptions:
   * It is always in the defender's best
-    interest to defend with 2 troops if
-    possible
+    interest to defend with as many troops
+    as possible
   * It is always in the attacker's best
-    interest to attack with 3 troops if
-    possible
+    interest to attack with as many troops
+    as possible
   * Competing armies fight to the death
 
 
 ### To Use
-Simply run the script passing in two ENV variables:
+Simply run the script passing in the following ENV variables:
 
 | Variable | Meaning | Default Value | Optional? |
 |--------------|---------|---------------|-----------|
