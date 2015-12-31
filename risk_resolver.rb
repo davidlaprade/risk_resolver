@@ -21,8 +21,6 @@
 #     as possible
 #   * The competing armies will fight to the death
 
-require 'pry'
-
 class RiskBattle
 
   attr_accessor :attackers,
