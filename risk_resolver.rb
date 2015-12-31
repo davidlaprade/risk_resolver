@@ -65,19 +65,23 @@ class RiskBattle
     end
 
     def faceoff
-      @attack_dice = roll_dice( :attack )
-      @defend_dice = roll_dice( :defend )
+      roll_dice
 
       puts "Attacker rolls #{@attack_dice.sort.reverse.inspect}"
       puts "Defender rolls #{@defend_dice.sort.reverse.inspect}"
 
-      # first round
+      first_round
+      second_round
+    end
+
+    def first_round
       compare_top_dice
       remove_top_dice
+    end
 
+    def second_round
       if defend_dice.count > 0 && attack_dice.count > 0 &&
           @attackers > 1 && @defenders > 0
-        # second round
         compare_top_dice
         remove_top_dice
       end
@@ -88,12 +92,16 @@ class RiskBattle
       defend_dice.delete_at defend_dice.index(defend_dice.max)
     end
 
-    def roll_dice( side )
-      case side
+    def roll_dice( *arg )
+      case arg.first
       when :attack
         num_dice = attackers > 3 ? 3 : attackers - 1
       when :defend
         num_dice = defenders >= 2 ? 2 : defenders
+      when nil
+        @attack_dice = roll_dice :attack
+        @defend_dice = roll_dice :defend
+        return nil
       end
       return Array.new(num_dice) { rand(1..6) }
     end
