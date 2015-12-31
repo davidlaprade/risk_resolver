@@ -37,8 +37,6 @@ class RiskBattle
     @stepwise = stepwise
     @attackers = attackers.to_i
     @defenders = defenders.to_i
-    @attack_dice = []
-    @defend_dice = []
   end
 
   def outcome
