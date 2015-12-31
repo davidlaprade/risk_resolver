@@ -11,20 +11,24 @@ class RiskBattle
   end
 
   def outcome
-    attack! while attackers > 1 && defenders > 0
+    fight_to_death
     output_result
   end
 
   # =============================================
   private
 
+    def fight_to_death
+      attack! while @attackers > 1 && @defenders > 0
+    end
+
     def attack!
       puts "#{attackers} attacking, #{defenders} defending..."
 
       roll_dice
 
-      puts "Attacker rolls #{@attack_dice.sort.reverse.inspect}"
-      puts "Defender rolls #{@defend_dice.sort.reverse.inspect}"
+      puts "Attacker rolls #{@attack_dice.sort.reverse}"
+      puts "Defender rolls #{@defend_dice.sort.reverse}"
 
       first_comparison
       second_comparison
@@ -57,15 +61,15 @@ class RiskBattle
     end
 
     def second_comparison
-      if defend_dice.count > 0 && attack_dice.count > 0 &&
-          @attackers > 1 && @defenders > 0
-        first_comparison
-      end
+      return unless defend_dice.count > 0 && attack_dice.count > 0
+      compare_top_dice
+      remove_top_dice
     end
 
     def remove_top_dice
-      attack_dice.delete_at attack_dice.index(attack_dice.max)
-      defend_dice.delete_at defend_dice.index(defend_dice.max)
+      [attack_dice, defend_dice].each do |dice|
+        dice.delete_at dice.index(dice.max)
+      end
     end
 
     def roll_dice( *arg )
