@@ -25,6 +25,39 @@ Simply run the script passing in the following ENV variables:
 Example:
 
 ```bash
-ATTACKING=10 DEFENDING=5 STEPWISE=true ruby risk_resolver.rb
+$ ATTACKING=8 DEFENDING=14 ruby risk_resolver.rb
+
+8 attacking, 14 defending...
+Attacker rolls [6, 5, 4]
+Defender rolls [4, 1]
+-1 defender
+-1 defender
+8 attacking, 12 defending...
+Attacker rolls [4, 4, 4]
+Defender rolls [3, 1]
+-1 defender
+-1 defender
+8 attacking, 10 defending...
+Attacker rolls [6, 2, 1]
+Defender rolls [5, 2]
+-1 defender
+-1 attacker
+7 attacking, 9 defending...
+Attacker rolls [5, 1, 1]
+Defender rolls [6, 1]
+-1 attacker
+-1 attacker
+5 attacking, 9 defending...
+Attacker rolls [6, 4, 3]
+Defender rolls [6, 4]
+-1 attacker
+-1 attacker
+3 attacking, 9 defending...
+Attacker rolls [3, 1]
+Defender rolls [3, 2]
+-1 attacker
+-1 attacker
+Result: 1 attackers, 9 defenders
+Territory defended!
 ```
 
