@@ -28,7 +28,8 @@ class RiskBattle
                 :attack_dice,
                 :defend_dice
 
-  def initialize( attackers = 1, defenders = 1 )
+  def initialize( attackers = 1, defenders = 1, stepwise = false)
+    @stepwise = stepwise
     @attackers = attackers.to_i
     @defenders = defenders.to_i
     @attack_dice = []
@@ -39,6 +40,10 @@ class RiskBattle
     while attackers > 1 && defenders > 0
       puts "#{attackers} attacking, #{defenders} defending..."
       faceoff
+      if @stepwise
+        puts "Enter to continue..."
+        gets
+      end
     end
 
     puts "Result: #{attackers} attackers, #{defenders} defenders"
@@ -96,5 +101,6 @@ end
 
 RiskBattle.new(
   ENV["ATTACKING"],
-  ENV["DEFENDING"]
+  ENV["DEFENDING"],
+  ENV["STEPWISE"] || false
 ).outcome
