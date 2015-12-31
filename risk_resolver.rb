@@ -1,33 +1,4 @@
-##############################################
-# ----------- INSTRUCTIONS -------------------
-##############################################
-# This program speeds up RISK play times by
-# resolving large battles without needing to
-# repeatedly roll any dice.
-#
-# Simply run the script passing in two ENV
-# variables:
-#   ATTACKING = number of pieces in attacking
-#   colony
-#   DEFENDING = number of pieces in defending
-#   colony
-# and this optional one:
-#   STEPWISE = (true/false) whether to step
-#   through the process one "roll" at a time
-#
-# Example: `ATTACKING=10 DEFENDING=5 ruby risk_resolver.rb`
-#
-# ASSUMPTIONS:
-#   * It is always in the defender's best
-#     interests to defend with 2 troops if
-#     possible
-#   * It is always in the attacker's best
-#     interests to attack with as many troops
-#     as possible
-#   * The competing armies will fight to the death
-
 class RiskBattle
-
   attr_accessor :attackers,
                 :defenders,
                 :attack_dice,
