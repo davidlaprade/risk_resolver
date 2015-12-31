@@ -18,7 +18,23 @@ class RiskBattle
   def outcome
     fight_to_death
     print_result unless @silent
-    return defenders.zero? ? "conquered" : "defended"
+    return defenders.zero? ? :conquest : :defended
+  end
+
+  def self.test(attackers, defenders)
+    test_cases = 100000
+    conquests, defences = 0, 0
+    test_cases.times do
+      battle = self.new(attackers, defenders, false, true)
+      if battle.outcome == :conquest
+        conquests += 1
+      else
+        defences += 1
+      end
+    end
+    puts "#{(conquests*100/test_cases).to_f}% conquest rate"
+
+    return {conquests: conquests, defences: defences}
   end
 
   # =============================================
