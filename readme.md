@@ -65,7 +65,7 @@ Territory defended!
 Or, test out some scenarios:
 
 ```bash
-$ irb -r ./risk_resolver.rb
+$ bin/console
 >> RiskBattle.test(14,14)
 52.0% conquest rate
 => {:conquests=>52878, :defences=>47122}
