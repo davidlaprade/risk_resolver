@@ -13,7 +13,7 @@ class RiskBattle
 
   def outcome
     fight_to_death
-    print_result unless @silent
+    print_battle_result unless @silent
     return defenders.zero? ? :conquest : :defended
   end
 
@@ -41,20 +41,16 @@ class RiskBattle
     end
 
     def attack!
-      roll_dice
-
       unless @silent
         puts "#{attackers} attacking, #{defenders} defending..."
-        puts "Attacker rolls #{@attack_dice.sort.reverse}"
-        puts "Defender rolls #{@defend_dice.sort.reverse}"
       end
 
+      roll_dice
       first_comparison
       second_comparison
 
       if @stepwise
-        puts "Enter to continue..."
-        gets
+        puts "Enter to continue..."; gets
       end
     end
 
@@ -68,7 +64,7 @@ class RiskBattle
       end
     end
 
-    def print_result
+    def print_battle_result
       puts "Result: #{attackers} attackers, #{defenders} defenders"
       puts "Territory conquered!" if defenders.zero?
       puts "Territory defended!" if attackers == 1
@@ -100,6 +96,10 @@ class RiskBattle
       when nil
         @attack_dice = roll_dice :attack
         @defend_dice = roll_dice :defend
+        unless @silent
+          puts "Attacker rolls #{@attack_dice.sort.reverse}"
+          puts "Defender rolls #{@defend_dice.sort.reverse}"
+        end
         return nil
       end
       return Array.new(num_dice) { rand(1..6) }
