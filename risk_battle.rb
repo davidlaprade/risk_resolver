@@ -17,11 +17,11 @@ class RiskBattle
     return defenders.zero? ? :conquest : :defended
   end
 
-  def self.test(attackers, defenders)
+  def self.test(hash)
     test_cases = 100000
     conquests, defences = 0, 0
     test_cases.times do
-      battle = self.new(attackers, defenders, false, true)
+      battle = self.new(hash[:attackers], hash[:defenders], false, true)
       if battle.outcome == :conquest
         conquests += 1
       else

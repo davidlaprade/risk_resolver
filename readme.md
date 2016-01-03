@@ -66,7 +66,7 @@ Or, test out some scenarios:
 
 ```bash
 $ bin/console
->> RiskBattle.test(14,14)
-52.0% conquest rate
-=> {:conquests=>52878, :defences=>47122}
+>> RiskBattle.test(attackers: 14, defenders: 11)
+72.0% conquest rate
+=> {:conquests=>72078, :defences=>27922}
 ```
